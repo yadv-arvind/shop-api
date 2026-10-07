@@ -41,3 +41,11 @@ def get_item(item_id: int) -> Item:
     if item_id not in _items:
         raise HTTPException(status_code=404, detail="Item not found")
     return _items[item_id]
+
+
+@app.delete("/items/{item_id}")
+def delete_item(item_id: int):
+    if item_id not in _items:
+        raise HTTPException(status_code=404, detail="Item not found")
+    del _items[item_id]
+    return {"detail": "Item deleted"}
